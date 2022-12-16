@@ -1,17 +1,5 @@
-//UC1
-{
+
     const IS_ABSENT = 0;
-    let empCheck=Math.floor(Math.random()*10)%2;
-    if(empCheck == IS_ABSENT){
-        console.log("Employee is Absent")
-        return;
-    }else{
-        console.log("Employee is Present")
-    }
-}
-
-//UC2 and refactored uc2 to do uc3
-
     const IS_PART_TIME=1;
     const IS_FULL_TIME=2;
     const PART_TIME_HOURS=4;
@@ -22,13 +10,21 @@
     let totalWorkingDays=0; 
     let empDailyWageArray=new Array();
     let empHrs=0;
+    let totalEmpHrs=0;
 
+
+    let empCheck=Math.floor(Math.random()*10)%2;
+    if(empCheck == IS_ABSENT){
+        console.log("Employee is Absent")
+        return;
+    }else{
+        console.log("Employee is Present")
+    }
 
     function calculateDailyWage(){
         return empHrs*WAGE_PER_HOUR;
     }
     
-    let totalEmpHrs=0;
 
     empCheck=Math.floor(Math.random()*10)%3;
     
@@ -51,4 +47,18 @@
         empDailyWageArray.push(calculateDailyWage(empHrs));
     }
     let empWage=totalEmpHrs*WAGE_PER_HOUR;
-    console.log("total days : "+totalWorkingDays+" \nTotal hours : "+totalEmpHrs+"\nEmployee Wage : "+empWage)
+   // console.log("total days : "+totalWorkingDays+" \nTotal hours : "+totalEmpHrs+"\nEmployee Wage : "+empWage)
+
+
+    // helper functions
+    let totEmpWage=0;
+    function sum(dailyWage){
+        totEmpWage+=dailyWage;
+    }
+    empDailyWageArray.forEach(sum);
+    console.log("Total days : "+totalWorkingDays+"\nTotal hours : "+totalEmpHrs+ "\nEmp Wage : "+totEmpWage);
+    
+    function totalWages(totalWage,dailyWage){
+        return totalWage+dailyWage;
+    }
+    console.log("Employee wage with reduce : "+empDailyWageArray.reduce(totalWages,0));
