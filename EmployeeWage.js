@@ -16,7 +16,8 @@
    let nonWrkingDays=new Array();
    let partWorkingDays=new Array();
    let fullWorkingDays=new Array();
-   
+   let empDailyHrsAndWageArr=new Array();
+
     let empDailyHrsMap=new Map();
 
 
@@ -51,9 +52,18 @@
         let empCheck=Math.floor(Math.random()*10)%3;
         totalEmpHrs+=getWorkingHours(empCheck)
         totalEmpHrs+=empHrs;
-        empDailyWageArray.push(calculateDailyWage(empHrs));
-        empDailyWageMap.set(totalWorkingDays,calculateDailyWage(empHrs))
-    }
+        empDailyWageArray.push(
+        {
+            dayNum:totalWorkingDays,
+            dailyHours:empHrs,
+            dailyWage:calculateDailyWage(empHrs),
+            toString(){
+                return '\nDay'+this.dayNum+'=> working hours is '+this.dailyHours+
+                'And Wage Earned = '+this.dailyWage
+            },
+        });
+    }    
+    console.log("showing daily hours worked and wage earned : "+empDailyHrsAndWageArr)
     console.log("employee wage map = "+empDailyWageMap)
     let empWage=totalEmpHrs*WAGE_PER_HOUR;
    // console.log("total days : "+totalWorkingDays+" \nTotal hours : "+totalEmpHrs+"\nEmployee Wage : "+empWage)
@@ -89,8 +99,7 @@
     }
     
     let fullDayWageArray=mapDayWithWageArray.filter(fullTimeWage);
-    console.log("daily wage filter when fullTimeWage is earned : ")
-    console.log(fullDayWageArray)
+    //console.log("daily wage filter when fullTimeWage is earned : "+fullDayWageArray)
 
    // find the first occurence when full time wage was earned using find function
    function findFullTimeWage(dailyWage){
@@ -124,7 +133,7 @@
    function totalWages(totalWage,dailyWage){
         return totalWage+dailyWage;
    }
-   console.log("employee map total Hours : "+Array.from(empDailyWageMap.values()).reduce(totalWages))
+   //console.log("employee map total Hours : "+Array.from(empDailyWageMap.values()).reduce(totalWages))
 
    const findTotal=(totalVal,dailyVal)=>{
         return totalVal+dailyVal;
@@ -132,7 +141,7 @@
    
    let totalHours=Array.from(empDailyHrsMap.values()).reduce(findTotal,0)
    let totalSalary=empDailyWageArray.filter(dailyWage => dailyWage>0).reduce(findTotal,0);
-   console.log("Employee wage with arrow : "+" Total hours : "+totalHours+" total wages : "+totalSalary)
+   //console.log("Employee wage with arrow : "+" Total hours : "+totalHours+" total wages : "+totalSalary)
 
   
    empDailyHrsMap.forEach((value,key)=>{
@@ -141,6 +150,4 @@
         else nonWrkingDays.push(key);
     
    });
-   console.log("Full working days : "+fullWorkingDays);
-   console.log("part working days : "+partWorkingDays);
-   console.log("non working days :"+nonWrkingDays);
+   
