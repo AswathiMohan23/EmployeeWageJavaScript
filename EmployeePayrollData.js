@@ -70,7 +70,7 @@ class EmployeePayrollData{
             this.pinCode=pinCode;
             console.log("pincode is valid")
         }else
-            throw 'pinCode is incorrect ... first digit should be between 1-9 and should contain 6 digits'
+            throw 'pinCode is incorrect ... first digit should be between 1-9 ,should contain only numbers and should contain 6 digits'
     }  
 
     get getName(){
@@ -120,5 +120,10 @@ try{
 }catch(e){
     console.error(e);
 }
-
+try{
+    employeePayrollData.setPinCode="A400088" //throws an error name is incorrect because it is starting with small letter
+    console.log(employeePayrollData.toString())
+}catch(e){
+    console.error(e);
+}
 
