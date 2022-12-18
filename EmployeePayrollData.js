@@ -70,12 +70,22 @@ class EmployeePayrollData{
         if(pinCodeRegex.test(pinCode)){
             this.pinCode=pinCode;
             console.log("pincode '"+pinCode+"' is valid")
-        }else{
-            
+        }else            
             throw "pinCode '"+pinCode+"' is incorrect ... first digit should be between 1-9 ,should contain only numbers and should contain 6 digits"
-   
-        }  
     }
+    
+    /**
+     * @param {string} email
+     */
+    set setEmail(email){
+        let emailRegex=RegExp("^[a-z0-9+_.-]+@+[a-z]+.+[a-z]")                                                                       
+        if(emailRegex.test(email)){
+            this.email=email;
+            console.log("email '"+email+"' is valid")
+        }else
+            throw "email '"+email+"' is incorrect"  
+    }
+    
     get getName(){
         return "id="+this.id+", name = "+this.name+" ,salary = "+this.salary;
     } 
@@ -137,6 +147,12 @@ try{
 }
 try{
     employeePayrollData.setPinCode="400 088" //it passes because space after 3 digit is also valid both "400088 and "400 088" are valid
+    console.log(employeePayrollData.toString())
+}catch(e){
+    console.error(e);
+}
+try{
+    employeePayrollData.setEmail="12a@.gmail" //it passes because space after 3 digit is also valid both "400088 and "400 088" are valid
     console.log(employeePayrollData.toString())
 }catch(e){
     console.error(e);
