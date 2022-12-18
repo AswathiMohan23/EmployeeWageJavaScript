@@ -151,9 +151,26 @@ try{
 }catch(e){
     console.error(e);
 }
+
 try{
-    employeePayrollData.setEmail="12a@.gmail" //it passes because space after 3 digit is also valid both "400088 and "400 088" are valid
+    employeePayrollData.setEmail="abc@yahoo.com"
+    employeePayrollData.setEmail="abc.100@yahoo.com"
+    employeePayrollData.setEmail="abc111@abc.com"
+    employeePayrollData.setEmail="abc-100@abc.net"
+    employeePayrollData.setEmail="abc.100@abc.com.au"
+    employeePayrollData.setEmail="abc@gmail.com.com"
+    employeePayrollData.setEmail="abc+100@gmail.com"
+    employeePayrollData.setEmail="abc-100@yahoo.com"
+    employeePayrollData.setEmail="abc@yahoo.com"
     console.log(employeePayrollData.toString())
 }catch(e){
     console.error(e);
 }
+try{
+    employeePayrollData.setEmail="abc@1.com"
+    console.log(employeePayrollData.toString())
+}catch(e){
+    console.error(e);
+}
+
+
