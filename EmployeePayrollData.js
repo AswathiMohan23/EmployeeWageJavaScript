@@ -28,7 +28,7 @@ class EmployeePayrollData{
         if(idRegex.test(id)){
             this.id=id;
         }else
-            throw 'id is incorrect ...id should be a non zero number';
+            throw "id '"+id+"' is incorrect ...id should be a non zero number";
     }
     /**
      * @param {any} name
@@ -38,7 +38,7 @@ class EmployeePayrollData{
         if(nameRegex.test(name)){
             this.name=name;
         }else
-            throw 'Name is incorrect';
+            throw "Name '"+name+"' is incorrect";
     }
     /**
      * @param {any} gender
@@ -48,7 +48,7 @@ class EmployeePayrollData{
         if(genderRegex.test(gender)){
             this.name=gender;
         }else
-            throw 'gender is incorrect it should be either F or M';
+            throw "gender '"+gender+"' is incorrect it should be either F or M";
     }
     /**
      * @param {string} date
@@ -58,21 +58,23 @@ class EmployeePayrollData{
         if(dateRegex.test(date)){
             this.name=date;
         }else
-            throw 'StartDate is incorrect year should be between 1960 - 2022';
+            throw "StartDate '"+date+ "' is incorrect year should be between 1960 - 2022";
     }
 
     /**
      * @param {string} pinCode
      */
     set setPinCode(pinCode){
-        let pinCodeRegex=RegExp("^[1-9]{1}[0-9]{5}")
+        let pinCodeRegex=RegExp("^[1-9]{1}[0-9]{5}$")
         if(pinCodeRegex.test(pinCode)){
             this.pinCode=pinCode;
-            console.log("pincode is valid")
-        }else
-            throw 'pinCode is incorrect ... first digit should be between 1-9 ,should contain only numbers and should contain 6 digits'
-    }  
-
+            console.log("pincode '"+pinCode+"' is valid")
+        }else{
+            
+            throw "pinCode '"+pinCode+"' is incorrect ... first digit should be between 1-9 ,should contain only numbers and should contain 6 digits"
+   
+        }  
+    }
     get getName(){
         return "id="+this.id+", name = "+this.name+" ,salary = "+this.salary;
     } 
@@ -91,39 +93,44 @@ let employeePayrollData3=new EmployeePayrollData(3,"Anna",30000,"F",new Date(),4
 console.log(employeePayrollData2.toString())
 console.log(employeePayrollData3.toString())
 try{
-    employeePayrollData.setId=0 //throws an error name is incorrect because it is starting with small letter
+    employeePayrollData.setId=0 //throws an error because id must be a non-zero number
     console.log(employeePayrollData.toString())
 }catch(e){
     console.error(e);
 }
 try{
-    employeePayrollData.setName="lucy" //throws an error name is incorrect because it is starting with small letter
+    employeePayrollData.setName="lucy" //throws an error because name is starting with small letter
     console.log(employeePayrollData.toString())
 }catch(e){
     console.error(e);
 }
 try{
-    employeePayrollData.setGender="X" //throws an error name is incorrect because it is starting with small letter
+    employeePayrollData.setGender="X" //throws an error because gender should be either F or M
     console.log(employeePayrollData.toString())
 }catch(e){
     console.error(e);
 }
 try{
-    employeePayrollData.setStartDate="2023-11-21" //throws an error name is incorrect because it is starting with small letter
+    employeePayrollData.setStartDate="2023-11-21" //throws an error because the date given is a future date
     console.log(employeePayrollData.toString())
 }catch(e){
     console.error(e);
 }
 try{
-    employeePayrollData.setPinCode="400088" //throws an error name is incorrect because it is starting with small letter
+    employeePayrollData.setPinCode="400088" // passes because pin code is correct
     console.log(employeePayrollData.toString())
 }catch(e){
     console.error(e);
 }
 try{
-    employeePayrollData.setPinCode="A400088" //throws an error name is incorrect because it is starting with small letter
+    employeePayrollData.setPinCode="A400088" //throws an error  because pincode is starting with an alphabet
     console.log(employeePayrollData.toString())
 }catch(e){
     console.error(e);
 }
-
+try{
+    employeePayrollData.setPinCode="400088B" //throws an error  because pincode is ending with an alphabet and contains 7 digits
+    console.log(employeePayrollData.toString())
+}catch(e){
+    console.error(e);
+}
