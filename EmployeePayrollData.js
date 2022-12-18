@@ -48,6 +48,14 @@ class EmployeePayrollData{
         }else
             throw 'gender is incorrect it should be either F or M';
     }
+    set setStartDate(date){
+        let dateRegex=RegExp("^\\d[1960-2022]{4}-\\d{2}-\\d{2}$")
+        if(dateRegex.test(date)){
+            this.name=date;
+        }else
+            throw 'StartDate is incorrect year should be between 1960 - 2022';
+    }
+    
   
 
     get getName(){
@@ -81,6 +89,12 @@ try{
 }
 try{
     employeePayrollData.setGender="X" //throws an error name is incorrect because it is starting with small letter
+    console.log(employeePayrollData.toString())
+}catch(e){
+    console.error(e);
+}
+try{
+    employeePayrollData.setStartDate="2023-11-21" //throws an error name is incorrect because it is starting with small letter
     console.log(employeePayrollData.toString())
 }catch(e){
     console.error(e);
