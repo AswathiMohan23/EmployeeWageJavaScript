@@ -65,7 +65,8 @@ class EmployeePayrollData{
      * @param {string} pinCode
      */
     set setPinCode(pinCode){
-        let pinCodeRegex=RegExp("^[1-9]{1}[0-9]{5}$")
+        let pinCodeRegex=RegExp("^[1-9]{1}[0-9]{2}\\s{0,1}[0-9]{3}$") // s{0,1} is for the space which may come after first 3 digits which is also valid 
+                                                                      // eg : 640 123 and 640123 both are valid
         if(pinCodeRegex.test(pinCode)){
             this.pinCode=pinCode;
             console.log("pincode '"+pinCode+"' is valid")
@@ -130,6 +131,12 @@ try{
 }
 try{
     employeePayrollData.setPinCode="400088B" //throws an error  because pincode is ending with an alphabet and contains 7 digits
+    console.log(employeePayrollData.toString())
+}catch(e){
+    console.error(e);
+}
+try{
+    employeePayrollData.setPinCode="400 088" //it passes because space after 3 digit is also valid both "400088 and "400 088" are valid
     console.log(employeePayrollData.toString())
 }catch(e){
     console.error(e);
