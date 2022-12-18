@@ -78,7 +78,7 @@ class EmployeePayrollData{
      * @param {string} email
      */
     set setEmail(email){
-        let emailRegex=RegExp("^[a-z0-9+_.-]+@+[a-z]+.+[a-z]")                                                                       
+        let emailRegex=RegExp("^[a-z0-9+_.-]+@+[a-z]+.+[a-z]{2,}$")                                                                       
         if(emailRegex.test(email)){
             this.email=email;
             console.log("email '"+email+"' is valid")
@@ -177,4 +177,84 @@ try{
     console.error(e);
 }
 
+try{
+    employeePayrollData.setEmail="abc@.com.my"
+    console.log(employeePayrollData.toString())
+}catch(e){
+    console.error(e);
+}
 
+try{
+    employeePayrollData.setEmail="abc123@gmail.a"
+    console.log(employeePayrollData.toString())
+}catch(e){
+    console.error(e);
+}
+try{
+    employeePayrollData.setEmail="abc123@.com"
+    console.log(employeePayrollData.toString())
+}catch(e){
+    console.error(e);
+}
+try{
+    employeePayrollData.setEmail="abc123@.com.com"
+    console.log(employeePayrollData.toString())
+}catch(e){
+    console.error(e);
+}
+try{
+    employeePayrollData.setEmail=".abc@abc.com "
+    console.log(employeePayrollData.toString())
+}catch(e){
+    console.error(e);
+}
+try{
+    employeePayrollData.setEmail="abc123@.com"
+    console.log(employeePayrollData.toString())
+}catch(e){
+    console.error(e);
+}
+
+try{
+    employeePayrollData.setEmail="abc()*@gmail.com"
+    console.log(employeePayrollData.toString())
+}catch(e){
+    console.error(e);
+}
+try{
+    employeePayrollData.setEmail="abc@%*.com"
+    console.log(employeePayrollData.toString())
+}catch(e){
+    console.error(e);
+}
+try{
+    employeePayrollData.setEmail="abc..2002@gmail.com"
+    console.log(employeePayrollData.toString())
+}catch(e){
+    console.error(e);
+}
+try{
+    employeePayrollData.setEmail="abc.@gmail.com"
+    console.log(employeePayrollData.toString())
+}catch(e){
+    console.error(e);
+}
+try{
+    employeePayrollData.setEmail="abc@abc@gmail.com"
+    console.log(employeePayrollData.toString())
+}catch(e){
+    console.error(e);
+}
+
+try{
+    employeePayrollData.setEmail="abc@gmail.com.1a"
+    console.log(employeePayrollData.toString())
+}catch(e){
+    console.error(e);
+}
+try{
+    employeePayrollData.setEmail="abc@gmail.com.aa.au"
+    console.log(employeePayrollData.toString())
+}catch(e){
+    console.error(e);
+}
