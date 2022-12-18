@@ -151,7 +151,8 @@ try{
 }catch(e){
     console.error(e);
 }
-
+ 
+// valid email id 
 try{
     employeePayrollData.setEmail="abc@yahoo.com"
     employeePayrollData.setEmail="abc.100@yahoo.com"
@@ -166,6 +167,9 @@ try{
 }catch(e){
     console.error(e);
 }
+
+// invalid email id
+
 try{
     employeePayrollData.setEmail="abc@1.com"
     console.log(employeePayrollData.toString())
