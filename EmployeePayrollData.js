@@ -22,13 +22,13 @@ class EmployeePayrollData{
      * @param {any} name
      */
     set setName(name){
-        let nameRegex=RegExp("[A-Z]{1}[a-z]{3,}")
-        if(nameRegex.test(name)){
+        let nameRegex=RegExp("[A-Z]{1}[a-z]{3,}$")
+        if(name.match(nameRegex)){
             this.name=name;
-        }
-        else throw 'Name is incorrect';
-        
+        }else
+            throw 'Name is incorrect';
     }
+
     get getName(){
         return "id="+this.id+", name = "+this.name+" ,salary = "+this.salary;
     } 
@@ -42,8 +42,15 @@ class EmployeePayrollData{
 let employeePayrollData =new EmployeePayrollData(1,"Roy",30000);
 console.log(employeePayrollData.toString());
 //employeePayrollData.id=2;
-//employeePayrollData.salary=800000;
 let employeePayrollData2=new EmployeePayrollData(2,"Terrisa",30000,"F",new Date())
 console.log(employeePayrollData2.toString())
 let employeePayrollData3=new EmployeePayrollData(3,"Anna",30000,"F",new Date())
 console.log(employeePayrollData3.toString())
+employeePayrollData.id=5;
+try{
+    employeePayrollData.setName="lucy" //throws an error name is incorrect because it is starting with small letter
+    console.log(employeePayrollData.toString())
+}catch(e){
+    console.error(e);
+}
+
