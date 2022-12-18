@@ -38,6 +38,16 @@ class EmployeePayrollData{
         }else
             throw 'Name is incorrect';
     }
+    /**
+     * @param {any} gender
+     */
+    set setGender(gender){
+        let genderRegex=RegExp("[M,F]{1}")
+        if(genderRegex.test(gender)){
+            this.name=gender;
+        }else
+            throw 'gender is incorrect it should be either F or M';
+    }
   
 
     get getName(){
@@ -65,6 +75,12 @@ try{
 }
 try{
     employeePayrollData.setName="lucy" //throws an error name is incorrect because it is starting with small letter
+    console.log(employeePayrollData.toString())
+}catch(e){
+    console.error(e);
+}
+try{
+    employeePayrollData.setGender="X" //throws an error name is incorrect because it is starting with small letter
     console.log(employeePayrollData.toString())
 }catch(e){
     console.error(e);
